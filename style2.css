@@ -329,10 +329,12 @@ details {
   }
 }
 
-@supports not (interpolate-size: allow-keywords) {
-  details[open]::details-content {
-    height: 150px;
-    overflow-y: scroll;
+@media (max-width: 600px) {
+  @supports not (interpolate-size: allow-keywords) {
+    details[open]::details-content {
+      height: auto;
+      overflow-y: visible;
+    }
   }
 }
 
@@ -448,3 +450,9 @@ h01::after {
   }
 }
 
+
+@media (max-width: 600px) {
+  h01 {
+    padding-left: 2.5em; /* ← 左余白を広げる */
+  }
+}
