@@ -487,9 +487,9 @@ h01::after {
 }
 
 
-@media (max-width: 600px) {
-  h01 {
-    margin-left: 25rem; /* ← 左余白を広げる */
+@media (max-width: 768px) {
+  .section-title {
+    margin-left: 20px;
   }
 }
 
