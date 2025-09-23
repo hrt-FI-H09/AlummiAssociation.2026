@@ -14,3 +14,22 @@ const observer = new IntersectionObserver(entries => {
 items.forEach(item => {
   observer.observe(item);
 });
+
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const faqItem = button.parentElement;
+    const answer = button.nextElementSibling;
+
+    // 他の項目を閉じる（アコーディオン動作）
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (item !== faqItem) {
+        item.classList.remove('open');
+        item.querySelector('.faq-answer').classList.remove('open');
+      }
+    });
+
+    // 現在クリックした項目を開閉
+    faqItem.classList.toggle('open');
+    answer.classList.toggle('open');
+  });
+});
