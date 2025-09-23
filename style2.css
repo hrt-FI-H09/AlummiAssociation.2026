@@ -489,15 +489,7 @@ h01::after {
 
 @media (max-width: 600px) {
   h01 {
-    padding-left: 25em; /* ← 左余白を広げる */
-  }
-}
-
-
-/* ===== スマホ向けに余白を少し減らす ===== */
-@media (max-width: 768px) {
-  h1, h2, h3, h4, h5, h6 {
-    margin-left: 5rem;
+    padding-left: 25rem; /* ← 左余白を広げる */
   }
 }
 
