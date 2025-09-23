@@ -127,6 +127,7 @@
 .faq-question {
   width: 100%;
   text-align: left;
+  color: #000; /* 黒に固定 */
   background: none;
   border: none;
   padding: 0.5rem;
@@ -491,3 +492,4 @@ h01::after {
     padding-left: 2.5em; /* ← 左余白を広げる */
   }
 }
+
