@@ -118,11 +118,50 @@
   .section-title { font-size: clamp(22px, 3.2vw, 28px); margin: 0 0 16px; }
   .subtle { color: var(--muted); }
 
-  /* ====== Details ====== */
-  .details { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .detail { padding: 1rem; }
-  .detail h3 { margin: 0 0 .25rem; font-size: 18px; }
-  .detail p { margin: 0; color: var(--muted); }
+ /* FAQアコーディオン */
+.faq-item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 0.5rem 0;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question .icon {
+  transition: transform 0.3s ease;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  padding: 0 0.5rem;
+  color: var(--muted);
+}
+
+.faq-answer.open {
+  max-height: 400px; /* 十分大きめに設定 */
+  opacity: 1;
+}
+
+.faq-item.open .icon {
+  transform: rotate(90deg);
+}
+
 
 /* ====== Timeline ====== */ 
 .timeline {
@@ -299,26 +338,22 @@ details.faq[open] .icon::before {
 }
 
 /* ====== アコーディオンの中身のアニメーション ====== */
-details {
-  &::details-content {
-    transition:
-      height 0.4s,
-      opacity 0.4s,
-      content-visibility 0.4s allow-discrete;
-    height: 0;
-    opacity: 0;
-    overflow: clip;
-    background-color: #f2fff0;
-  }
+details > .details-content {
+  transition: height 0.4s ease, opacity 0.4s ease;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: #f2fff0;
+}
 
-  &[open]::details-content {
-    opacity: 1;
-  }
-
+details[open] > .details-content {
+  height: auto;
+  opacity: 1;
+}
   &[open] .icon {
     transform: rotate(0deg);
   }
-}
+
 
 @supports (interpolate-size: allow-keywords) {
   :root {
