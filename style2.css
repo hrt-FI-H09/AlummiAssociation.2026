@@ -125,9 +125,9 @@
 }
 
 .faq-question {
+  color: #000; /* 黒に固定 */
   width: 100%;
   text-align: left;
-  color: #000; /* 黒に固定 */
   background: none;
   border: none;
   padding: 0.5rem;
@@ -392,12 +392,13 @@ details[open] > .details-content {
     .card { box-shadow: none; border:1px solid #ddd; }
   }
 
-h01 {
+.notice-box {
   position: relative;
-  padding-left: 1.5em; /* 左線と文字の間の余白 */
+  padding-left: 1.5em; /* 縦線と文字の間隔 */
 }
 
-h01::before {
+/* まとめて1本の縦線を表示 */
+.notice-box::before {
   content: "";
   position: absolute;
   left: 0;
@@ -407,7 +408,8 @@ h01::before {
   background: rgb(87, 109, 44);
 }
 
-h01::after {
+/* 下の横線は見出しだけ */
+.section-title::after {
   content: "";
   display: block;
   width: 100%;
@@ -415,6 +417,7 @@ h01::after {
   margin-top: 0.25em;
   background: linear-gradient(to right, rgb(87, 109, 44), transparent);
 }
+
 
 /* ====== Responsive Enhancements ====== */
 @media (max-width: 768px) {
@@ -486,12 +489,9 @@ h01::after {
   }
 }
 
-
+/* ===== スマホ向けに余白を少し減らす ===== */
 @media (max-width: 768px) {
-  .section-title {
-    margin-left: 20px;
+  h2 {
+    margin-left: 0.5rem;
   }
 }
-
-
-
