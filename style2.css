@@ -493,3 +493,10 @@ h01::after {
   }
 }
 
+
+/* ===== スマホ向けに余白を少し減らす ===== */
+@media (max-width: 768px) {
+  h1, h2, h3, h4, h5, h6 {
+    margin-left: 0.5rem;
+  }
+}
