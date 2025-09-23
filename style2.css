@@ -489,8 +489,9 @@ h01::after {
 
 @media (max-width: 600px) {
   h01 {
-    padding-left: 25rem; /* ← 左余白を広げる */
+    margin-left: 25rem; /* ← 左余白を広げる */
   }
 }
+
 
 
