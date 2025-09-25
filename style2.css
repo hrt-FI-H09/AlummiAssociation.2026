@@ -60,11 +60,16 @@
     display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius: calc(var(--radius) - 6px);
     font-weight: 700; text-decoration:none; border:1px solid transparent; background: var(--brand); color:#fff; box-shadow: var(--shadow);
   }
-  .btn:hover { filter: brightness(1.05); text-decoration:none; }
+  .btn:hover ,
+  .btn:focus {
+  background-color: #addeb0; /* 好きな色に変更可 */
+  color: #3F521F;               /* テキスト色も調整 */
+  transition: background 0.2s, color 0.2s;
+}
 .btn.outline {
   background: transparent;
-  color: #576D2C;           /* 文字色を青に */
-  border: 2px solid #3F521F;/* 枠線を青に */
+  color: #576D2C;           /* 文字色を緑に */
+  border: 2px solid #3F521F;/* 枠線を緑に */
   transition: background 0.2s, color 0.2s;
 }
 .btn.outline:hover {
@@ -392,31 +397,62 @@ details[open] > .details-content {
     .card { box-shadow: none; border:1px solid #ddd; }
   }
 
+/* ===== notice-box 全体のスタイル ===== */
 .notice-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
   position: relative;
-  padding-left: 1.5em; /* 縦線と文字の間隔 */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05); /* カードっぽくする */
 }
 
-/* まとめて1本の縦線を表示 */
-.notice-box::before {
-  content: "";
+/* 全体のボックス */
+.notice-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #567d46; /* 左側の縦線 */
+}
+
+/* 見出し */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to right, #567d46, rgba(255, 255, 255, 0)) 1;
+  margin-bottom: 16px;
+}
+
+/* タイムラインのリスト */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 2px solid #567d46; /* タイムラインの縦線 */
+  padding-left: 20px;
+}
+
+.timeline li {
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+/* タイムラインの丸 */
+.timeline li::before {
+  content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: rgb(87, 109, 44);
+  left: -9px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #567d46;
+  border-radius: 50%;
 }
 
-/* 下の横線は見出しだけ */
-.section-title::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 4px;
-  margin-top: 0.25em;
-  background: linear-gradient(to right, rgb(87, 109, 44), transparent);
-}
 
 
 /* ====== Responsive Enhancements ====== */
