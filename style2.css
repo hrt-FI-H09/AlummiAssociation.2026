@@ -34,6 +34,10 @@
   }
 }
 
+html {
+  color-scheme: light; /* ブラウザにライトモードだけ使わせる */
+}
+
 /* テキストやカードの余白も調整したい場合 */
 @media (max-width: 600px) {
   .card.p {
@@ -496,3 +500,4 @@ details[open] > .details-content {
     margin-left: 0.5rem;
   }
 }
+
