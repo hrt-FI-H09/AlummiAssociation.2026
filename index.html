@@ -54,7 +54,7 @@
       <div class="notice-box"><h2 class="section-title">&ensp;お知らせ</h2></div>
       <div class="details">
         <div class="detail">
-          <p>・2025年11月13日(木) 23:59 申込締切です。お早めにお申し込みください。</p>
+          <p>・2025年11月13日(木) 23:59 参加申込・参加費振込の締切です。お早めにお申し込みください。</p>
         </div>
       </div>
     </div>
@@ -79,8 +79,11 @@
         </div>
         <div class="detail">
           <h3>ドレスコード</h3>
-          <p>成人式後そのままの服装でも、お着替えいただいても大丈夫です。
-立食形式なので、動きやすさも重視してください。なお、同窓会という場にふさわしい服装をおすすめいたします。</p>
+          <p>成人式後そのままの服装でも、お着替えいただいても大丈夫ですが、同窓会という場にふさわしい服装をおすすめいたします。</p>
+        </div>
+        <div class="detail">
+          <h3>食事の形式</h3>
+          <p>立食ビュッフェ形式</a></p>
         </div>
         <div class="detail">
           <h3>申込締切</h3>
@@ -161,7 +164,7 @@
   <div class="faq-item">
     <button class="faq-question">支払い方法は？<span class="icon">›</span></button>
     <div class="faq-answer">
-      期限までに口座に事前振り込みを行ってください。振り込みの仕方はこちら
+      期限までに口座に事前振り込みを行ってください。<a href="https://www.notion.so/27992476e22780d8b982d23511e55588" target="_blank">振り込みの仕方はこちら</a>
     </div>
   </div>
 
@@ -282,20 +285,6 @@
   const calBtn = document.getElementById('calBtn');
   calBtn.href = icsURL; calBtn.download = `${EVENT.name.replace(/\s+/g,'_')}.ics`;
 
-  // ====== 共有リンク ======
-  const title = `${EVENT.name}｜ご案内`;
-  const text = `${ymd(start)}開催。会場：${EVENT.venue} / 詳細・申込：`;
-  const url = EVENT.siteURL;
-  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-  document.getElementById('shareLINE').href = `https://line.me/R/msg/text/?${encodeURIComponent(`${title}\n${text}${url}`)}`;
-  const shareNative = document.getElementById('shareNative');
-  shareNative?.addEventListener('click', async (e)=>{
-    e.preventDefault();
-    if(navigator.share){
-      try{ await navigator.share({ title, text, url }); } catch(err){}
-    } else { alert('お使いの端末はネイティブ共有に対応していません。XやLINEから共有してください。'); }
-  });
-
   // ====== スムーススクロール（アクセシビリティ配慮でCSSではなくJSで） ======
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', (e)=>{
@@ -325,6 +314,7 @@
 <script src="script1.js"></script>
 </body>
 </html>
+
 
 
 
