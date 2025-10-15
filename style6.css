@@ -211,7 +211,7 @@
 @media (max-width: 768px) {
   .slide-container {
     overflow-x: auto;
-    scroll-behavior: smooth; /* スワイプが滑らかに */
+    scroll-behavior: auto;
   }
   .slide-wrapper {
     display: flex;
@@ -559,3 +559,4 @@ details[open] > .details-content {
     margin-left: 0.5rem;
   }
 }
+
