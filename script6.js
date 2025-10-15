@@ -44,7 +44,8 @@ if (window.innerWidth <= 768) {
   container.addEventListener('scroll', () => {
     // 半分スクロールしたら先頭に戻す
     if (container.scrollLeft >= wrapper.scrollWidth / 2) {
-      container.scrollLeft = 0;
+      container.scrollLeft = -= slideWidth * (totalSlides / 2);
     }
   });
 }
+
