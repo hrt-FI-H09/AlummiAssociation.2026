@@ -34,18 +34,20 @@ document.querySelectorAll('.faq-question').forEach(button => {
   });
 });
 
-const wrapper = document.querySelector('.slide-wrapper');
-const container = document.querySelector('.slide-container');
+// === スライドショー無限ループ（モバイル） ===
+const slideContainer = document.querySelector('.slide-container');
+const slideWrapper = document.querySelector('.slide-wrapper');
+const slideCount = slideWrapper.querySelectorAll('.slide').length / 2;
+const firstSlide = slideWrapper.firstElementChild;
 
-if (window.innerWidth <= 768) {
-  const container = document.querySelector('.slide-container');
-  const wrapper = document.querySelector('.slide-wrapper');
+// スライドの幅（マージンを含む）を動的に取得
+const slideWidth = firstSlide.offsetWidth + 10; // 10pxはCSSのmargin-right
 
-  container.addEventListener('scroll', () => {
-    // 半分スクロールしたら先頭に戻す
-    if (container.scrollLeft >= wrapper.scrollWidth / 2) {
-      container.scrollLeft = -= slideWidth * (totalSlides / 2);
-    }
-  });
-}
-
+// 無限ループの動作を監視
+slideContainer.addEventListener('scroll', () => {
+  // ユーザーが最初のセットをスクロールし終えたかチェック
+  if (slideContainer.scrollLeft >= slideWidth * slideCount) {
+    // スクロール位置を前半の先頭に戻す
+    slideContainer.scrollLeft -= slideWidth * slideCount;
+  }
+});
