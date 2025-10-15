@@ -34,9 +34,11 @@
 <main id="top" class="container">
   <!-- ===== Hero ===== -->
   <section class="hero">
-    <div style="top:0px; left:-80px;">
-    <h1><img src="title.png" class="topImg"></h1>
-    </div>
+<picture>
+  <source srcset="titleMini.png" media="(max-width: 768px)">
+  <source srcset="title.png" media="(min-width: 769px)">
+  <img src="title.png" alt="タイトル画像" class="topImg" style="top:0; left:-80px;">
+</picture>
     <h2>開催日：<strong id="dateText">2026年1月12日(火) 18:00 開始(17:30 入場受付開始)</strong> ／ 会場：<strong><a href="https://www.francs.co.jp/" target="_blank">ホテル フランクス</a>（海浜幕張駅）</strong></h2>
     <div class="cta-row">
       <a class="btn" id="rsvpBtn" href="#entry" aria-label="参加申込へ">参加申込</a>
@@ -317,20 +319,6 @@
   const icsURL = URL.createObjectURL(blob);
   const calBtn = document.getElementById('calBtn');
   calBtn.href = icsURL; calBtn.download = `${EVENT.name.replace(/\s+/g,'_')}.ics`;
-
-  // ====== 共有リンク ======
-  const title = `${EVENT.name}｜ご案内`;
-  const text = `${ymd(start)}開催。会場：${EVENT.venue} / 詳細・申込：`;
-  const url = EVENT.siteURL;
-  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-  document.getElementById('shareLINE').href = `https://line.me/R/msg/text/?${encodeURIComponent(`${title}\n${text}${url}`)}`;
-  const shareNative = document.getElementById('shareNative');
-  shareNative?.addEventListener('click', async (e)=>{
-    e.preventDefault();
-    if(navigator.share){
-      try{ await navigator.share({ title, text, url }); } catch(err){}
-    } else { alert('お使いの端末はネイティブ共有に対応していません。XやLINEから共有してください。'); }
-  });
 
   // ====== スムーススクロール（アクセシビリティ配慮でCSSではなくJSで） ======
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
