@@ -55,6 +55,9 @@
   }
   a { color: var(--brand); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  topImg { width: 150vw; height: auto; display: block;overflow: hidden;
+        margin-left: -80px;  /* ← 左に80pxずらす */
+        margin-top: -80px;       /* ← 上の余白がいらなければ0 */}
   img { max-width: 100%; display: block; }
   .container { width: min(1100px, 94vw); margin-inline: auto; }
   .btn {
@@ -105,9 +108,10 @@
   }
 }
 
+
+
   /* ====== Hero ====== */
   .hero { padding: 80px 0 40px; position: relative; }
-  .hero .eyebrow { margin-bottom:.6rem; }
   .hero h1 { font-size: clamp(28px, 4.5vw, 48px); line-height:1.2; margin:0 0 .6rem; letter-spacing:.02em; }
   .hero p { font-size: clamp(16px, 2.4vw, 18px); color: var(--muted); margin: 0 0 1.2rem; }
   .cta-row { display:flex; gap:.8rem; flex-wrap:wrap; }
@@ -183,17 +187,30 @@
 }
 
 .slide {
-  width: calc(150%/5);                /* ← 枠幅に自動で合わせる */
+  width: calc(180%/6);        /* ← 枠幅に自動で合わせる */
   flex-shrink: 0;             /* ← 圧縮されないように固定 */
   object-fit: cover;          /* ← アスペクト比を保ってトリミング */
   border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 0.5rem;
+}
+/* スマホサイズ対応（768px以下） */
+@media (max-width: 768px) {
+  .slide {
+    width: 90%;              /* 枠の8割を1枚で占める */
+    margin-right: 10px;      /* 少し余白をつける */
+    padding: 0.5rem;
+  }
+
+  .slide-container {
+    height: 220px;           /* 高さを少し低くして整える */
+  }
 }
 
 /* 横方向に流れるアニメーション */
 @keyframes slide-flow {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-150%); }
+  100% { transform: translateX(-180%); }
 }
 
 /* ====== Timeline ====== */ 
