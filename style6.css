@@ -192,7 +192,7 @@
     object-fit: cover;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 0.5rem;
+    padding: 0rem;
   }
    .slide-paused:hover .slide-wrapper {
    animation-play-state: paused;
@@ -225,6 +225,7 @@
     object-fit: cover;
     border: 1px solid #ddd;
     border-radius: 8px;
+    padding:0rem;
   }
 }
 
@@ -559,3 +560,4 @@ details[open] > .details-content {
     margin-left: 0.5rem;
   }
 }
+
