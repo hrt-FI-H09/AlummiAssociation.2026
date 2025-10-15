@@ -37,17 +37,20 @@ document.querySelectorAll('.faq-question').forEach(button => {
 // === スライドショー無限ループ（モバイル） ===
 const slideContainer = document.querySelector('.slide-container');
 const slideWrapper = document.querySelector('.slide-wrapper');
-const slideCount = slideWrapper.querySelectorAll('.slide').length / 2;
 const firstSlide = slideWrapper.firstElementChild;
 
-// スライドの幅（マージンを含む）を動的に取得
-const slideWidth = firstSlide.offsetWidth + 10; // 10pxはCSSのmargin-right
+if (firstSlide && window.innerWidth <= 768) {
+  // 1枚のスライドの幅を取得（10pxはCSSのmargin-right）
+  const slideWidth = firstSlide.offsetWidth + 10;
+  
+  // スライドの枚数（1セット分）を取得
+  const slideCount = slideWrapper.querySelectorAll('.slide').length / 2;
 
-// 無限ループの動作を監視
-slideContainer.addEventListener('scroll', () => {
-  // ユーザーが最初のセットをスクロールし終えたかチェック
-  if (slideContainer.scrollLeft >= slideWidth * slideCount) {
-    // スクロール位置を前半の先頭に戻す
-    slideContainer.scrollLeft -= slideWidth * slideCount;
-  }
-});
+  slideContainer.addEventListener('scroll', () => {
+    // スクロール位置が1セット分を超えたら、先頭に戻す
+    // ※スクロールの勢いで少し超えることがあるため、等号付きで判定
+    if (slideContainer.scrollLeft >= slideWidth * slideCount) {
+      slideContainer.scrollLeft -= slideWidth * slideCount;
+    }
+  });
+}
