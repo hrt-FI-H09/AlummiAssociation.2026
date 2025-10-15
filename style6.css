@@ -170,47 +170,62 @@
 
 /* ====== Hotel view ====== */ 
 .slide-container {
-  width: 100%;                /* ← 枠いっぱいに広がる */
+  width: 100%;
   display: flex;
   align-items: center;
-  height: 340px;              /* 高さだけ固定（必要なら調整） */
-  overflow: hidden;           /* 枠の外は非表示 */
-  flex-direction: row;
+  height: 340px;
+  overflow: hidden; /* PCでは自動スクロール用 */
   position: relative;
 }
 
-.slide-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 200%; /* 画像を2セット分横に並べる */
-  animation: slide-flow 20s linear infinite; /* 無限ループ */
-}
-
-.slide {
-  width: calc(180%/6);        /* ← 枠幅に自動で合わせる */
-  flex-shrink: 0;             /* ← 圧縮されないように固定 */
-  object-fit: cover;          /* ← アスペクト比を保ってトリミング */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 0.5rem;
-}
-/* スマホサイズ対応（768px以下） */
-@media (max-width: 768px) {
+/* PC用自動スクロール */
+@media (min-width: 769px) {
+  .slide-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 200%; /* 2セット分 */
+    animation: slide-flow 20s linear infinite;
+  }
   .slide {
-    width: 90%;              /* 枠の8割を1枚で占める */
-    margin-right: 10px;      /* 少し余白をつける */
+    width: calc(150% / 6); /* 6枚で2セット */
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 0.5rem;
   }
-
-  .slide-container {
-    height: 220px;           /* 高さを少し低くして整える */
+   .slide-paused:hover .slide-wrapper {
+   animation-play-state: paused;
+ }
+ .slide-paused:hover .slide-wrapper img:hover {
+   opacity: .8;
+   cursor: grabbing;
+ }
+  @keyframes slide-flow {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-150%); } /* 半分分移動 */
   }
 }
 
-/* 横方向に流れるアニメーション */
-@keyframes slide-flow {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-180%); }
+/* スマホ用（スワイプできる） */
+@media (max-width: 768px) {
+  .slide-container {
+    overflow-x: auto;
+    scroll-behavior: smooth; /* スワイプが滑らかに */
+  }
+  .slide-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: max-content; /* 自動で必要な幅に */
+  }
+  .slide {
+    width: 70%;          /* スマホ用の幅 */
+    flex-shrink: 0;
+    margin-right: 10px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
 }
 
 /* ====== Timeline ====== */ 
