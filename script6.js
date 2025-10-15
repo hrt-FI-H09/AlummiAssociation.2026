@@ -33,3 +33,18 @@ document.querySelectorAll('.faq-question').forEach(button => {
     answer.classList.toggle('open');
   });
 });
+
+const wrapper = document.querySelector('.slide-wrapper');
+const container = document.querySelector('.slide-container');
+
+if (window.innerWidth <= 768) {
+  const container = document.querySelector('.slide-container');
+  const wrapper = document.querySelector('.slide-wrapper');
+
+  container.addEventListener('scroll', () => {
+    // 半分スクロールしたら先頭に戻す
+    if (container.scrollLeft >= wrapper.scrollWidth / 2) {
+      container.scrollLeft = 0;
+    }
+  });
+}
